@@ -22,6 +22,14 @@ const mimeTypes = {
  * Handles incoming HTTP requests.
  */
 const requestListener = (req, res) => {
+    // API endpoint for IP address
+    if (req.url === '/api/ip') {
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ip }));
+        return;
+    }
+
     // Determine the file path. Default to index.html for the root path.
     let filePath = req.url === '/' ? INDEX_FILE : req.url.substring(1);
     
