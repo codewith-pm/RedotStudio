@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const INDEX_FILE = 'index.html';
 
 // MIME type mapping for serving assets
